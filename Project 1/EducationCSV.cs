@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace Project_1
 {
-    class ExperienceCSV
+    class EducationCSV
     {
         private readonly string Description = "Description:\n\n" + "I am Keshav Lolljee and currently studying Software Engineering at the University of " +
                     "Technology, Mauritius. I am a final year student who is open to learning new technologies or developing new skills\n";
 
-        private string csv_url = @"C:\Users\doxlo\Desktop\Ceridian\CSV_Files\Experience.csv";
+        private string csv_url = @"C:\Users\doxlo\Desktop\Ceridian\CSV_Files\Education.csv";
         private List<string> headings = new List<string>();
         private List<string> info = new List<string>();
         private int expChoice;
-        
 
-        public void GetExperience()
+
+        public void GetEducation()
         {
-            ExtractExperience();
+            ExtractEducation();
 
             bool checkGetExp = true;
             bool loopcheck2 = true;
@@ -31,7 +31,7 @@ namespace Project_1
 
                 Console.WriteLine(Description);
 
-                Console.WriteLine("Choose a company: \n");
+                Console.WriteLine("Choose a Education / Training: \n");
 
                 foreach (var elem in headings)
                 {
@@ -53,7 +53,7 @@ namespace Project_1
                             //Brief Description
                             Console.WriteLine(Description);
 
-                            Console.WriteLine($"{headings[expChoice]}:\n{info[expChoice]}");
+                            Console.WriteLine($"{headings[expChoice]}:\n\n{info[expChoice]}");
 
                             Console.WriteLine($"\nPress any key to go back...");
 
@@ -88,7 +88,7 @@ namespace Project_1
             } while (checkGetExp);
         }
 
-        public void ExtractExperience()
+        public void ExtractEducation()
         {
             headings.Clear();
             info.Clear();
@@ -105,24 +105,24 @@ namespace Project_1
                     fields = parser.ReadFields();
 
                     int strCount = fields.Length;
-                    
+
                     if (strCount == 2)
                     {
-                        headings.Add(fields[0]);
-                        info.Add(fields[1]);
+                        headings.Add(fields[0].Replace("[s]", "\n"));
+                        info.Add(fields[1].Replace("[s]", "\n"));
                     }
                     else
                     {
-                        for (int i = 0; i < strCount-1; i++)
+                        for (int i = 0; i < strCount - 1; i++)
                         {
 
                             if (i <= ((strCount - 1) / 2))
                             {
-                                headings.Add(fields[i].ToString());
+                                headings.Add(fields[i]);
                             }
                             else
                             {
-                                info.Add(fields[i].ToString());
+                                info.Add(fields[i]);
                             }
                         }
                     }
@@ -131,14 +131,14 @@ namespace Project_1
             headings.Remove("");
             info.Remove("");
         }
-        
+
         public void errorCases()
         {
             Console.Clear();
 
             Console.WriteLine(Description);
 
-            Console.WriteLine("Choose an Experience / Job History: \n");
+            Console.WriteLine("Choose a company: \n");
 
             foreach (var elem in headings)
             {

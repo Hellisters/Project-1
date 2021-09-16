@@ -89,8 +89,8 @@ namespace Project_1
 
                     case GuestSelection.Education:
 
-                        /*EducationCSV education_select = new EducationCSV();*/
-                        /*education_select.GetEducation();*/
+                        EducationCSV education_select = new EducationCSV();
+                        education_select.GetEducation();
                         check2 = true;
                         userInput = -1;
                         break;
