@@ -29,7 +29,7 @@ namespace Project_1
                 parser.TextFieldType = FieldType.Delimited;
                 parser.SetDelimiters(",");
                 while (!parser.EndOfData)
-                {
+                { 
                     //Process row
                     fields = parser.ReadFields();
 

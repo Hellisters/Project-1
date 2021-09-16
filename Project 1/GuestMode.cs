@@ -15,8 +15,8 @@ namespace Project_1
 
         public void Guest()
         {
-            int userInput = 0;
-            bool check1 = true, loopcheck = true;
+            int userInput = -1;
+            bool check1 = true, check2 = true;
             CSV m_select = new CSV();
 
             do
@@ -28,8 +28,7 @@ namespace Project_1
 
                 Console.WriteLine("\nEnter:\n0 : Experience / Job History\n1 : Education / Training\n2 : Skills\n3 : Technological Skills\n4" +
                     " : Contact Details\n5 : Back to Main Menu\n");
-
-                while (loopcheck)
+                while (check2)
                 {
                     try
                     {
@@ -37,8 +36,8 @@ namespace Project_1
 
                         if (userInput >= 0 && userInput <= 5)
                         {
+                            check2 = false;
                             Console.Clear();
-                            loopcheck = false;
                         }
                         else
                         {
@@ -52,26 +51,44 @@ namespace Project_1
 
                             Console.WriteLine("\nWrong Input! Try again.");
 
-                            loopcheck = true;
+                            userInput = int.Parse(Console.ReadLine());
+
+                            check2 = true;
                         }
                     }
                     catch
                     {
-                        loopcheck = true;
+                        Console.Clear();
+
+                        //Brief Description
+                        Console.WriteLine(Description);
+
+                        Console.WriteLine("\nEnter:\n0 : Experience / Job History\n1 : Education / Training\n2 : Skills\n3 : Technological Skills\n4" +
+                        " : Contact Details\n5 : Back to Main Menu\n");
+
+                        Console.WriteLine("\nWrong Input! Try again.");
+
+                        check2 = true;
                     }
                 }
+                
+
 
                 switch ((GuestSelection)userInput)
                 {
                     case GuestSelection.Experience :
 
-                        m_select.GetExperience();
+                        CSV csv = new CSV();
+                        csv.GetExperience();
+                        check2 = true;
+                        userInput = -1;
 
                         break;
 
                     case GuestSelection.Education :
 
-
+                        Console.WriteLine("Change successfull");
+                        Console.ReadKey();
 
                         break;
 
