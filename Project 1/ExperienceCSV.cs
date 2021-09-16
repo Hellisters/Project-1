@@ -12,14 +12,16 @@ namespace Project_1
         private readonly string Description = "Description:\n\n" + "I am Keshav Lolljee and currently studying Software Engineering at the University of " +
                     "Technology, Mauritius. I am a final year student who is open to learning new technologies or developing new skills\n";
 
-        private string csv_url = @"C:\Users\doxlo\Desktop\Ceridian\CSV_Files\Education.csv";
+        private string csv_url = @"C:\Users\doxlo\Desktop\Ceridian\CSV_Files\Experience.csv";
         private List<string> headings = new List<string>();
         private List<string> info = new List<string>();
         private int expChoice;
         
 
         public void GetExperience()
-        {          
+        {
+            ExtractExperience();
+
             bool checkGetExp = true;
             bool loopcheck2 = true;
 
@@ -102,22 +104,32 @@ namespace Project_1
                     //Process row
                     fields = parser.ReadFields();
 
-                    int strCount = fields.Length - 1;
-
-                    for (int i = 0; i < fields.Length; i++)
+                    int strCount = fields.Length;
+                    
+                    if (strCount == 2)
                     {
-                        if (i <= (strCount / 2))
+                        headings.Add(fields[0]);
+                        info.Add(fields[1]);
+                    }
+                    else
+                    {
+                        for (int i = 0; i < strCount-1; i++)
                         {
-                            headings.Add(fields[i].ToString());
-                        }
-                        if (i > (strCount / 2))
-                        {
-                            info.Add(fields[i]);
+
+                            if (i <= ((strCount - 1) / 2))
+                            {
+                                headings.Add(fields[i].ToString());
+                            }
+                            else
+                            {
+                                info.Add(fields[i].ToString());
+                            }
                         }
                     }
                 }
             }
             headings.Remove("");
+            info.Remove("");
         }
         
         public void errorCases()

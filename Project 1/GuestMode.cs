@@ -15,12 +15,8 @@ namespace Project_1
         public void Guest()
         {
             
-            bool check1 = true;
             CSV m_select = new CSV();
 
-
-        public void Guest()
-        {
             int userInput = -1;
             bool check1 = true, check2 = true;
             
@@ -34,8 +30,6 @@ namespace Project_1
 
                 Console.WriteLine("\nEnter:\n0 : Experience / Job History\n1 : Education / Training\n2 : Skills\n3 : Technological Skills\n4" +
                     " : Contact Details\n5 : Back to Main Menu\n");
-
-                int userInput = int.Parse(Console.ReadLine());
 
                 do
                 {
@@ -95,8 +89,8 @@ namespace Project_1
 
                     case GuestSelection.Education:
 
-                        EducationCSV education_select = new EducationCSV();
-                        education_select.GetEducation();
+                        /*EducationCSV education_select = new EducationCSV();*/
+                        /*education_select.GetEducation();*/
                         check2 = true;
                         userInput = -1;
                         break;
