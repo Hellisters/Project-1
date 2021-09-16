@@ -23,13 +23,31 @@ namespace Project_1
             {
                 Console.Clear();
 
+<<<<<<< Updated upstream
                 Console.WriteLine("Choose an option:\n0 for Guest Mode \n1 for Admin Mode\n2 for Exit");
                 do
+=======
+                Console.WriteLine("Choose an option:\n0 for Guest Mode \n1 for Admin Mode\n2 for Exit\n");
+
+                while (inputCheck)
+>>>>>>> Stashed changes
                 {
                     try
                     {
                         UserInput = int.Parse(Console.ReadLine());
-                        inputCheck = false;
+
+                        if (UserInput >= 0 && UserInput <=2)
+                        {
+                            inputCheck = false;
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Choose an option:\n0 for Guest Mode \n1 for Admin Mode\n2 for Exit");
+                            Console.WriteLine("\nWrong Input! Try again.");
+                            inputCheck = true;
+                        }
+                        
                     }
                     catch
                     {
@@ -38,8 +56,7 @@ namespace Project_1
                         Console.WriteLine("\nWrong Input! Try again.");
                         inputCheck = true;
                     }
-                } while (inputCheck);
-                
+                } 
 
                 switch ((ModeSelection)UserInput)
                 {
