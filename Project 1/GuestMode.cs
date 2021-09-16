@@ -9,18 +9,19 @@ namespace Project_1
 {
     class GuestMode
     {
-        private readonly string Description = "\nDescription:\n\n" + "I am Keshav Lolljee and currently studying Software Engineering at the University of " +
+        private readonly string Description = "Description:\n\n" + "I am Keshav Lolljee and currently studying Software Engineering at the University of " +
                     "Technology, Mauritius. I am a final year student who is open to learning new technologies or developing new skills";
+        
+
         public void Guest()
         {
-            
-            bool check1 = true;
+            int userInput = 0;
+            bool check1 = true, loopcheck = true;
             CSV m_select = new CSV();
 
             do
             {
                 Console.Clear();
-
 
                 //Brief Description
                 Console.WriteLine(Description);
@@ -28,13 +29,43 @@ namespace Project_1
                 Console.WriteLine("\nEnter:\n0 : Experience / Job History\n1 : Education / Training\n2 : Skills\n3 : Technological Skills\n4" +
                     " : Contact Details\n5 : Back to Main Menu\n");
 
-                int userInput = int.Parse(Console.ReadLine());
+                while (loopcheck)
+                {
+                    try
+                    {
+                        userInput = int.Parse(Console.ReadLine());
+
+                        if (userInput >= 0 && userInput <= 5)
+                        {
+                            Console.Clear();
+                            loopcheck = false;
+                        }
+                        else
+                        {
+                            Console.Clear();
+
+                            //Brief Description
+                            Console.WriteLine(Description);
+
+                            Console.WriteLine("\nEnter:\n0 : Experience / Job History\n1 : Education / Training\n2 : Skills\n3 : Technological Skills\n4" +
+                            " : Contact Details\n5 : Back to Main Menu\n");
+
+                            Console.WriteLine("\nWrong Input! Try again.");
+
+                            loopcheck = true;
+                        }
+                    }
+                    catch
+                    {
+                        loopcheck = true;
+                    }
+                }
 
                 switch ((GuestSelection)userInput)
                 {
                     case GuestSelection.Experience :
 
-                        m_select.FetchExperience();
+                        m_select.GetExperience();
 
                         break;
 

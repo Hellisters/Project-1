@@ -9,26 +9,22 @@ namespace Project_1
 {
     class CSV
     {
-        private readonly string Description = "\nDescription:\n\n" + "I am Keshav Lolljee and currently studying Software Engineering at the University of " +
-                    "Technology, Mauritius. I am a final year student who is open to learning new technologies or developing new skills";
+        private readonly string Description = "Description:\n\n" + "I am Keshav Lolljee and currently studying Software Engineering at the University of " +
+                    "Technology, Mauritius. I am a final year student who is open to learning new technologies or developing new skills\n";
+        private string csv_url = @"C:\Users\doxlo\Desktop\Ceridian\CSV_Files\csv_data.csv";
         private List<string> headings = new List<string>();
         private List<string> info = new List<string>();
-        private int expChoice = 0;
+        private int expChoice;
+        
 
-        public void FetchExperience()
+        public void GetExperience()
         {
             headings.Clear();
             info.Clear();
-            ExperienceHeadingExtraction();
-            ExperienceValuesExtraction();
-            GetExperience();
-        }
 
-        public void ExperienceHeadingExtraction()
-        {
             string[] fields;
 
-            using (TextFieldParser parser = new TextFieldParser(@"C:\Users\doxlo\Desktop\CSV_Files\csv_data.csv"))
+            using (TextFieldParser parser = new TextFieldParser(csv_url))
             {
                 parser.TextFieldType = FieldType.Delimited;
                 parser.SetDelimiters(",");
@@ -45,28 +41,6 @@ namespace Project_1
                         {
                             headings.Add(fields[i].ToString());
                         }
-                    }
-                }
-            }
-        }
-        
-        public void ExperienceValuesExtraction()
-        {
-            string[] fields;
-
-            using (TextFieldParser parser = new TextFieldParser(@"C:\Users\doxlo\Desktop\CSV_Files\csv_data.csv"))
-            {
-                parser.TextFieldType = FieldType.Delimited;
-                parser.SetDelimiters(",");
-                while (!parser.EndOfData)
-                {
-                    //Process row
-                    fields = parser.ReadFields();
-
-                    int strCount = fields.Length - 1;
-
-                    for (int i = 0; i < fields.Length; i++)
-                    {
                         if (i > (strCount / 2))
                         {
                             info.Add(fields[i]);
@@ -74,79 +48,96 @@ namespace Project_1
                     }
                 }
             }
-        }
-        
-        public void GetExperience()
-        {
-            bool checkGetExp = true;
+            headings.Remove("");
 
-            do
+
+            bool checkGetExp = true;
+            bool loopcheck2 = true;
+
+            while (checkGetExp)
             {
                 Console.Clear();
 
                 Console.WriteLine(Description);
 
-                Console.WriteLine("Choose a company:");
+                Console.WriteLine("Choose a company: \n");
 
                 foreach (var elem in headings)
                 {
-                    Console.WriteLine($"\n{headings.IndexOf(elem)} : {elem}");
+                    Console.WriteLine($"{headings.IndexOf(elem)} : {elem}");
                 }
 
-                try
+                Console.WriteLine($"{headings.Count} : Go Back");
+
+                while (loopcheck2)
                 {
-                    expChoice = int.Parse(Console.ReadLine());
-
-                    if (expChoice < 0 || expChoice > ((headings.Count) - 1))
+                    try
                     {
-                        Console.Clear();
+                        expChoice = int.Parse(Console.ReadLine());
 
-                        //Brief Description
-                        Console.WriteLine(Description);
-
-                        Console.WriteLine("Choose a company:");
-
-                        foreach (var elem in headings)
+                        if (expChoice >= 0 && expChoice <= ((headings.Count) - 1))
                         {
-                            Console.WriteLine($"\n{headings.IndexOf(elem)} : {elem}");
+                            Console.Clear();
+
+                            //Brief Description
+                            Console.WriteLine(Description);
+
+                            Console.WriteLine($"{headings[expChoice]}:\n{info[expChoice]}");
+
+                            Console.WriteLine($"\nPress any key to go back...");
+
+                            loopcheck2 = false;
+                            checkGetExp = false;
+
+                            Console.ReadKey();
+
+                            break;
                         }
+                        else if (expChoice == headings.Count)
+                        {
+                            loopcheck2 = false;
+                            checkGetExp = false;
 
-                        Console.WriteLine("\nWrong input! Try again.");
+                            break;
+                        }
+                        else
+                        {
+                            Console.Clear();
+
+                            //Brief Description
+                            Console.WriteLine(Description);
+
+
+                            Console.WriteLine("Choose a company: \n");
+                            foreach (var elem in headings)
+                            {
+                                Console.WriteLine($"{headings.IndexOf(elem)} : {elem}");
+                            }
+
+                            Console.WriteLine($"{headings.Count} : Go Back");
+
+                            Console.WriteLine("\nWrong Input! Try again.");
+
+                            loopcheck2 = true;
+                        }
                     }
-                    else
+                    catch
                     {
-                        Console.Clear();
-
-                        //Brief Description
-                        Console.WriteLine(Description);
-
-                        Console.WriteLine($"\n{headings[expChoice]}:\n{info[expChoice]}");
-
-                        Console.WriteLine($"\nPress any key to go back...");
-
-                        Console.ReadKey();
-                        checkGetExp = false;
-
+                        loopcheck2 = true;
                     }
-
                 }
-                catch
-                {
-                    Console.Clear();
-
-                    //Brief Description
-                    Console.WriteLine(Description);
-
-                    foreach (var elem in headings)
-                    {
-                        Console.WriteLine($"\n{headings.IndexOf(elem)} : {elem}");
-                    }
-
-                    Console.WriteLine("\nWrong Input! Try again.");
-
-                    checkGetExp = true;
-                }                
-            } while (checkGetExp);
+            }
         }
+        
+
+        /*public void ExperienceHeadingExtraction()
+        {
+            
+        }
+
+        public void ExperienceValuesExtraction()
+        {
+            
+        }*/
     }
 }

@@ -23,7 +23,7 @@ namespace Project_1
             {
                 Console.Clear();
 
-                Console.WriteLine("Choose an option:\n0 for Guest Mode \n1 for Admin Mode\n2 for Exit");
+                Console.WriteLine("Choose an option:\n0 for Guest Mode \n1 for Admin Mode\n2 for Exit\n");
                 do
                 {
                     try
