@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualBasic.FileIO;
+using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,26 +9,35 @@ namespace Project_1
 {
     class GuestMode
     {
-        private readonly string Description = "Description:\n\n" + "I am Keshav Lolljee and currently studying Software Engineering at the University of " +
+        private readonly string Description = "\nDescription:\n\n" + "I am Keshav Lolljee and currently studying Software Engineering at the University of " +
                     "Technology, Mauritius. I am a final year student who is open to learning new technologies or developing new skills";
-        
+
+        public void Guest()
+        {
+            
+            bool check1 = true;
+            CSV m_select = new CSV();
+
 
         public void Guest()
         {
             int userInput = -1;
             bool check1 = true, check2 = true;
-            CSV m_select = new CSV();
-
+            
             do
             {
                 Console.Clear();
+
 
                 //Brief Description
                 Console.WriteLine(Description);
 
                 Console.WriteLine("\nEnter:\n0 : Experience / Job History\n1 : Education / Training\n2 : Skills\n3 : Technological Skills\n4" +
                     " : Contact Details\n5 : Back to Main Menu\n");
-                while (check2)
+
+                int userInput = int.Parse(Console.ReadLine());
+
+                do
                 {
                     try
                     {
@@ -70,55 +79,54 @@ namespace Project_1
 
                         check2 = true;
                     }
-                }
-                
-
+                } while (check2);
 
                 switch ((GuestSelection)userInput)
                 {
-                    case GuestSelection.Experience :
+                    case GuestSelection.Experience:
 
-                        CSV csv = new CSV();
-                        csv.GetExperience();
+                        ExperienceCSV experience_select = new ExperienceCSV();
+                        experience_select.GetExperience();
                         check2 = true;
                         userInput = -1;
 
                         break;
 
-                    case GuestSelection.Education :
 
-                        Console.WriteLine("Change successfull");
-                        Console.ReadKey();
+                    case GuestSelection.Education:
 
+                        EducationCSV education_select = new EducationCSV();
+                        education_select.GetEducation();
+                        check2 = true;
+                        userInput = -1;
                         break;
 
-                    case GuestSelection.Skills :
-
-
-
+                    case GuestSelection.Skills:
+                        
+                        check2 = true;
+                        userInput = -1;
                         break;
 
-                    case GuestSelection.TechnologicalSkills :
+                    case GuestSelection.TechnologicalSkills:
 
-
-
+                        check2 = true;
+                        userInput = -1;
                         break;
 
-                    case GuestSelection.ContactDetails :
+                    case GuestSelection.ContactDetails:
 
-
-
+                        check2 = true;
+                        userInput = -1;
                         break;
 
-                    case GuestSelection.GoBack :
+                    case GuestSelection.GoBack:
 
                         check1 = false;
-
+                        userInput = -1;
                         break;
 
                 }
             } while (check1);
-
         }
     }
 }
