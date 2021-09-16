@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualBasic.FileIO;
+using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,21 +11,19 @@ namespace Project_1
     {
         private readonly string Description = "\nDescription:\n\n" + "I am Keshav Lolljee and currently studying Software Engineering at the University of " +
                     "Technology, Mauritius. I am a final year student who is open to learning new technologies or developing new skills";
-<<<<<<< Updated upstream
+
         public void Guest()
         {
             
             bool check1 = true;
             CSV m_select = new CSV();
 
-=======
 
         public void Guest()
         {
             int userInput = -1;
             bool check1 = true, check2 = true;
             
->>>>>>> Stashed changes
             do
             {
                 Console.Clear();
@@ -36,10 +34,9 @@ namespace Project_1
 
                 Console.WriteLine("\nEnter:\n0 : Experience / Job History\n1 : Education / Training\n2 : Skills\n3 : Technological Skills\n4" +
                     " : Contact Details\n5 : Back to Main Menu\n");
-<<<<<<< Updated upstream
 
                 int userInput = int.Parse(Console.ReadLine());
-=======
+
                 do
                 {
                     try
@@ -83,21 +80,11 @@ namespace Project_1
                         check2 = true;
                     }
                 } while (check2);
->>>>>>> Stashed changes
 
                 switch ((GuestSelection)userInput)
                 {
                     case GuestSelection.Experience:
 
-<<<<<<< Updated upstream
-                        m_select.FetchExperience();
-
-                        break;
-
-                    case GuestSelection.Education :
-
-
-=======
                         ExperienceCSV experience_select = new ExperienceCSV();
                         experience_select.GetExperience();
                         check2 = true;
@@ -105,8 +92,8 @@ namespace Project_1
 
                         break;
 
+
                     case GuestSelection.Education:
->>>>>>> Stashed changes
 
                         EducationCSV education_select = new EducationCSV();
                         education_select.GetEducation();
@@ -115,8 +102,6 @@ namespace Project_1
                         break;
 
                     case GuestSelection.Skills:
-
-
                         
                         check2 = true;
                         userInput = -1;
@@ -124,13 +109,11 @@ namespace Project_1
 
                     case GuestSelection.TechnologicalSkills:
 
-
                         check2 = true;
                         userInput = -1;
                         break;
 
                     case GuestSelection.ContactDetails:
-
 
                         check2 = true;
                         userInput = -1;

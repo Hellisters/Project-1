@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualBasic.FileIO;
+using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,23 +14,16 @@ namespace Project_1
 
         static void Main(string[] args)
         {
-            
-
             GuestMode g_mode = new GuestMode();
             AdminMode a_mode = new AdminMode();
 
-            while (modeCheck)
+            do
             {
                 Console.Clear();
 
-<<<<<<< Updated upstream
-                Console.WriteLine("Choose an option:\n0 for Guest Mode \n1 for Admin Mode\n2 for Exit");
-                do
-=======
                 Console.WriteLine("Choose an option:\n0 for Guest Mode \n1 for Admin Mode\n2 for Exit\n");
 
-                while (inputCheck)
->>>>>>> Stashed changes
+                do
                 {
                     try
                     {
@@ -56,7 +49,7 @@ namespace Project_1
                         Console.WriteLine("\nWrong Input! Try again.");
                         inputCheck = true;
                     }
-                } 
+                } while (inputCheck);
 
                 switch ((ModeSelection)UserInput)
                 {
@@ -78,7 +71,7 @@ namespace Project_1
                         Environment.Exit(0);
                         break;
                 }
-            }
-        }
+            } while (modeCheck);
+        } 
     }
 }
