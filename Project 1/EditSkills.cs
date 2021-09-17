@@ -47,12 +47,7 @@ namespace Project_1
             {
                 Console.Clear();
 
-                Console.WriteLine("Skills: \n");
-
-                foreach (var elem in skills)
-                {
-                    Console.WriteLine($"{skills.IndexOf(elem)} : {elem}");
-                }
+                Console.WriteLine("0 : Add\n1 : Delete\n2 : Edit\n3 : Exit\n");
 
                 do
                 {
@@ -104,33 +99,22 @@ namespace Project_1
                         //before your loop
                         var csv = new StringBuilder();
 
-                        string valuetoedit = "{" + userInput.ToString() +"}";
-
-                        Console.WriteLine("Enter new data:\n");
+                        Console.WriteLine("Add a new skill:\n");
                         string input = Console.ReadLine();
-                        string oldval;
+                        skills.Add(input);
+
 
                         for (int i = 0; i < skills.Count; i++)
                         {
-                            string othervalues = "{" + i.ToString() + "}";
-                            if (i == userInput)
-                            {
-                                //in your loop
-                                var newLine = string.Format(valuetoedit, input, Environment.NewLine);
-                                csv.Append(newLine);
-                            }
-                            else
-                            {
-                                oldval = skills[i];
-                                //in your loop
-                                var newLine = string.Format(othervalues, oldval, Environment.NewLine);
-                                csv.Append(newLine);
-                            }
-
-                            //after your loop
-                            File.WriteAllText(filePath, csv.ToString());
+                            //in your loop
+                            var newdata = skills[i];
+                            var newLine = string.Format("{0},{1}{2}", newdata, "", Environment.NewLine);
+                            csv.Append(newLine);
+                                
                         }
-                        
+
+                        //after your loop
+                        File.WriteAllText(filePath, csv.ToString());
 
                         check2 = true;
                         userInput = -1;
