@@ -105,6 +105,8 @@ namespace Project_1
 
                     case GuestSelection.TechnologicalSkills:
 
+                        TechSkillsCSV techskill = new TechSkillsCSV();
+                        techskill.GetTechSkills();
                         check2 = true;
                         userInput = -1;
                         break;

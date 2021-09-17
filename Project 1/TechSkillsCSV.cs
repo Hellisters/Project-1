@@ -7,24 +7,23 @@ using System.Threading.Tasks;
 
 namespace Project_1
 {
-    class SkillsCSV
+    class TechSkillsCSV
     {
+        private string csv_url = @"C:\Users\doxlo\Desktop\Ceridian\CSV_Files\TechnologicalSkills.csv";
+        private List<string> techskills = new List<string>();
 
-        private string csv_url = @"C:\Users\doxlo\Desktop\Ceridian\CSV_Files\Skills.csv";
-        private List<string> skills = new List<string>();
 
-
-        public void GetSkills()
+        public void GetTechSkills()
         {
-            ExtractSkills();
+            ExtractTechSkills();
 
             Console.Clear();
 
             Console.WriteLine("Skills: \n");
 
-            foreach (var elem in skills)
+            foreach (var elem in techskills)
             {
-                Console.WriteLine($"{skills.IndexOf(elem) + 1}) {elem}");
+                Console.WriteLine($"{techskills.IndexOf(elem) + 1}) {elem}");
             }
 
             Console.WriteLine($"\nPress any key to go back...");
@@ -32,9 +31,9 @@ namespace Project_1
             Console.ReadKey();
         }
 
-        public void ExtractSkills()
+        public void ExtractTechSkills()
         {
-            skills.Clear();
+            techskills.Clear();
 
             string[] fields;
 
@@ -50,10 +49,10 @@ namespace Project_1
                     int strCount = fields.Length;
                     for (int i = 0; i < strCount; i++)
                     {
-                        if(i == 0)
+                        if (i == 0)
                         {
-                            skills.Add(fields[0]);
-                            skills.Remove("");
+                            techskills.Add(fields[0]);
+                            techskills.Remove("");
                         }
                     }
                 }
