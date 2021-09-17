@@ -7,24 +7,24 @@ using System.Threading.Tasks;
 
 namespace Project_1
 {
-    class SkillsCSV
+    class ContactCSV
     {
+        private string csv_url = @"C:\Users\doxlo\Desktop\Ceridian\CSV_Files\Contact.csv";
+        private List<string> contact = new List<string>();
+        private List<string> displayCon = new List<string>();
 
-        private string csv_url = @"C:\Users\doxlo\Desktop\Ceridian\CSV_Files\Skills.csv";
-        private List<string> skills = new List<string>();
 
-
-        public void GetSkills()
+        public void GetContact()
         {
-            ExtractSkills();
+            ExtractContact();
 
             Console.Clear();
 
-            Console.WriteLine("Skills: \n");
+            Console.WriteLine("Contact Details: \n");
 
-            foreach (var elem in skills)
+            foreach (var elem in contact)
             {
-                Console.WriteLine($"{skills.IndexOf(elem) + 1}) {elem}");
+                Console.WriteLine($"{elem}: {displayCon[contact.IndexOf(elem)]}");
             }
 
             Console.WriteLine($"\nPress any key to go back...");
@@ -32,9 +32,9 @@ namespace Project_1
             Console.ReadKey();
         }
 
-        public void ExtractSkills()
+        public void ExtractContact()
         {
-            skills.Clear();
+            contact.Clear();
 
             string[] fields;
 
@@ -50,10 +50,15 @@ namespace Project_1
                     int strCount = fields.Length;
                     for (int i = 0; i < strCount; i++)
                     {
-                        if(i == 0)
+                        if (i <= 0)
                         {
-                            skills.Add(fields[i]);
-                            skills.Remove("");
+                            contact.Add(fields[i]);
+                            contact.Remove("");
+                        }
+                        else
+                        {
+                            displayCon.Add(fields[i]);
+                            displayCon.Remove("");
                         }
                     }
                 }

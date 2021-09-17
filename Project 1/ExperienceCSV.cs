@@ -105,23 +105,23 @@ namespace Project_1
                     }
                     else
                     {
-                        for (int i = 0; i < strCount-1; i++)
+                        for (int i = 0; i < strCount; i++)
                         {
 
-                            if (i <= ((strCount - 1) / 2))
+                            if (i <= 0)
                             {
                                 headings.Add(fields[i].ToString());
+                                headings.Remove("");
                             }
                             else
                             {
                                 info.Add(fields[i].ToString());
+                                info.Remove("");
                             }
                         }
                     }
                 }
             }
-            headings.Remove("");
-            info.Remove("");
         }
         
         public void errorCases()

@@ -35,4 +35,14 @@ namespace Project_1
         Exit
 
     }
+    
+    enum EditSelection  
+    {
+        
+        Add,
+        Delete,
+        Edit,
+        Exit
+
+    }
 }

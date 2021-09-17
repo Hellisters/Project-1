@@ -51,7 +51,7 @@ namespace Project_1
                     {
                         if (i == 0)
                         {
-                            techskills.Add(fields[0]);
+                            techskills.Add(fields[i]);
                             techskills.Remove("");
                         }
                     }

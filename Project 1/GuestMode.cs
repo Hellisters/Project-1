@@ -14,9 +14,6 @@ namespace Project_1
 
         public static void Guest()
         {
-            
-            CSV m_select = new CSV();
-
             int userInput = -1;
             bool check1 = true, check2 = true;
             
@@ -113,6 +110,8 @@ namespace Project_1
 
                     case GuestSelection.ContactDetails:
 
+                        ContactCSV con = new ContactCSV();
+                        con.GetContact();
                         check2 = true;
                         userInput = -1;
                         break;
