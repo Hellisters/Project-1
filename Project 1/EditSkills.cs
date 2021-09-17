@@ -49,6 +49,13 @@ namespace Project_1
 
                 Console.WriteLine("0 : Add\n1 : Delete\n2 : Edit\n3 : Exit\n");
 
+                Console.WriteLine("");
+
+                foreach (var elem in skills)
+                {
+                    Console.WriteLine($"{skills.IndexOf(elem) + 1} : {elem}");
+                }
+
                 do
                 {
                     try
