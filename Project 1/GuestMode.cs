@@ -28,7 +28,7 @@ namespace Project_1
                 //Brief Description
                 Console.WriteLine(Description);
 
-                Console.WriteLine("\nEnter:\n0 : Experience / Job History\n1 : Education / Training\n2 : Skills\n3 : Technological Skills\n4" +
+                Console.WriteLine("\nChoose an Option:\n0 : Experience / Job History\n1 : Education / Training\n2 : Skills\n3 : Technological Skills\n4" +
                     " : Contact Details\n5 : Back to Main Menu\n");
 
                 do
@@ -49,7 +49,7 @@ namespace Project_1
                             //Brief Description
                             Console.WriteLine(Description);
 
-                            Console.WriteLine("\nEnter:\n0 : Experience / Job History\n1 : Education / Training\n2 : Skills\n3 : Technological Skills\n4" +
+                            Console.WriteLine("\nChoose an Option:\n0 : Experience / Job History\n1 : Education / Training\n2 : Skills\n3 : Technological Skills\n4" +
                             " : Contact Details\n5 : Back to Main Menu\n");
 
                             Console.WriteLine("\nWrong Input! Try again.");
@@ -66,7 +66,7 @@ namespace Project_1
                         //Brief Description
                         Console.WriteLine(Description);
 
-                        Console.WriteLine("\nEnter:\n0 : Experience / Job History\n1 : Education / Training\n2 : Skills\n3 : Technological Skills\n4" +
+                        Console.WriteLine("\nChoose an Option:\n0 : Experience / Job History\n1 : Education / Training\n2 : Skills\n3 : Technological Skills\n4" +
                         " : Contact Details\n5 : Back to Main Menu\n");
 
                         Console.WriteLine("\nWrong Input! Try again.");
@@ -96,7 +96,9 @@ namespace Project_1
                         break;
 
                     case GuestSelection.Skills:
-                        
+
+                        SkillsCSV skill = new SkillsCSV();
+                        skill.GetSkills();
                         check2 = true;
                         userInput = -1;
                         break;

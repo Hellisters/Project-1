@@ -25,4 +25,14 @@ namespace Project_1
         GoBack
 
     }
+
+    enum EducationSelection  
+    {
+        
+        Year1,
+        Year2,
+        Year3,
+        Exit
+
+    }
 }

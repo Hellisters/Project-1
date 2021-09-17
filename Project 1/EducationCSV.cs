@@ -9,22 +9,21 @@ namespace Project_1
 {
     class EducationCSV
     {
-        private readonly string Description = "Description:\n\n" + "I am Keshav Lolljee and currently studying Software Engineering at the University of " +
-                    "Technology, Mauritius. I am a final year student who is open to learning new technologies or developing new skills\n";
-
-        private string csv_url = @"C:\Users\doxlo\Desktop\Ceridian\CSV_Files\Education.csv";
+        private string y1_module = @"C:\Users\doxlo\Desktop\Ceridian\CSV_Files\Year1_Modules.csv";
+        private string y1_project = @"C:\Users\doxlo\Desktop\Ceridian\CSV_Files\Year1_Projects.csv";
+        private string y2_module = @"C:\Users\doxlo\Desktop\Ceridian\CSV_Files\Year2_Modules.csv";
+        private string y2_project = @"C:\Users\doxlo\Desktop\Ceridian\CSV_Files\Year2_Projects.csv";
+        private string y3_module = @"C:\Users\doxlo\Desktop\Ceridian\CSV_Files\Year3_Modules.csv";
+        private string y3_project = @"C:\Users\doxlo\Desktop\Ceridian\CSV_Files\Year3_Projects.csv";
         private List<string> headings = new List<string>();
         private List<string> modules = new List<string>();
-        private List<List<string>> sep_modules = new List<List<string>>();
         private List<string> projects = new List<string>();
-        private List<string> sep_projects = new List<string>();
         private int expChoice;
 
 
         public void GetEducation()
         {
-            ExtractEducation();
-            SeparateInfo();
+            
 
             bool checkGetExp = true;
             bool loopcheck2 = true;
@@ -33,31 +32,7 @@ namespace Project_1
             {
                 Console.Clear();
 
-                Console.WriteLine(Description);
-
-                Console.WriteLine("Choose a Education / Training: \n");
-
-                foreach (var elem in headings)
-                {
-                    Console.WriteLine($"{headings.IndexOf(elem)} : {elem}");
-                }
-                Console.WriteLine($"\n\n");
-                foreach (var elem in modules)
-                {
-                    Console.WriteLine($"{modules.IndexOf(elem)} : {elem}");
-                }
-                Console.WriteLine($"\n\n");
-                foreach (var elem in projects)
-                {
-                    Console.WriteLine($"{projects.IndexOf(elem)} : {elem}");
-                }
-                Console.WriteLine($"\n\n");
-                Console.WriteLine($"\n\n");
-                foreach (var elem in sep_modules)
-                {
-                    Console.WriteLine($"{sep_modules.IndexOf(elem)} : {elem}");
-                }
-                /*Console.WriteLine($"{headings.Count} : Go Back");*/
+                Console.WriteLine("Choose a Education / Training:\n0 : Software Engineering ( Year 1 )\n1 : Software Engineering ( Year 2 )\n2 : Software Engineering ( Year 3 )\n3 : Go Back");
 
                 do
                 {
@@ -65,30 +40,107 @@ namespace Project_1
                     {
                         expChoice = int.Parse(Console.ReadLine());
 
-                        if (expChoice >= 0 && expChoice <= ((headings.Count) - 1))
+                        if (expChoice >= 0 && expChoice <=3)
                         {
-                            Console.Clear();
+                            switch ((EducationSelection)expChoice)
+                            {
+                                case EducationSelection.Year1:
 
-                            //Brief Description
-                            Console.WriteLine(Description);
+                                    ExtractYear1();
 
-                            Console.WriteLine($"{headings[expChoice]}:\n\n{modules[expChoice]}");
+                                    Console.Clear();
 
-                            Console.WriteLine($"\nPress any key to go back...");
+                                    Console.WriteLine($"Software Engineering ( Year 2 ):\n");
+                                    Console.WriteLine($"Module(s):\n");
 
-                            loopcheck2 = false;
-                            checkGetExp = true;
+                                    foreach (var elem1 in modules)
+                                    {
+                                        Console.WriteLine($"{modules.IndexOf(elem1) + 1}) {elem1}");
+                                    }
 
-                            Console.ReadKey();
+                                    Console.WriteLine($"\nProject(s):\n");
 
-                            break;
-                        }
-                        else if (expChoice == headings.Count)
-                        {
-                            loopcheck2 = false;
-                            checkGetExp = false;
+                                    foreach (var elem2 in projects)
+                                    {
+                                        Console.WriteLine($"{projects.IndexOf(elem2) + 1}) {elem2}");
+                                    }
 
-                            break;
+                                    Console.WriteLine($"\nPress any key to go back...");
+
+                                    loopcheck2 = false;
+                                    checkGetExp = true;
+
+                                    Console.ReadKey();
+
+                                    break;
+
+                                case EducationSelection.Year2:
+
+                                    ExtractYear2();
+
+                                    Console.Clear();
+
+                                    Console.WriteLine($"Software Engineering ( Year 2 ):\n");
+                                    Console.WriteLine($"Module(s):\n");
+
+                                    foreach (var elem1 in modules)
+                                    {
+                                        Console.WriteLine($"{modules.IndexOf(elem1) + 1}) {elem1}");
+                                    }
+
+                                    Console.WriteLine($"\nProject(s):\n");
+
+                                    foreach (var elem2 in projects)
+                                    {
+                                        Console.WriteLine($"{projects.IndexOf(elem2) + 1}) {elem2}");
+                                    }
+
+                                    Console.WriteLine($"\nPress any key to go back...");
+
+                                    loopcheck2 = false;
+                                    checkGetExp = true;
+
+                                    Console.ReadKey();
+
+                                    break;
+
+                                case EducationSelection.Year3:
+
+                                    ExtractYear3();
+
+                                    Console.Clear();
+
+                                    Console.WriteLine($"Software Engineering ( Year 3 ):\n");
+                                    Console.WriteLine($"Module(s):\n");
+
+                                    foreach (var elem1 in modules)
+                                    {
+                                        Console.WriteLine($"{modules.IndexOf(elem1) + 1}) {elem1}");
+                                    }
+
+                                    Console.WriteLine($"\nProject(s):\n");
+
+                                    foreach (var elem2 in projects)
+                                    {
+                                        Console.WriteLine($"{projects.IndexOf(elem2) + 1}) {elem2}");
+                                    }
+
+                                    Console.WriteLine($"\nPress any key to go back...");
+
+                                    loopcheck2 = false;
+                                    checkGetExp = true;
+
+                                    Console.ReadKey();
+
+                                    break;
+
+                                case EducationSelection.Exit:
+
+                                    loopcheck2 = false;
+                                    checkGetExp = false;
+
+                                    break;
+                            }
                         }
                         else
                         {
@@ -104,65 +156,142 @@ namespace Project_1
                         checkGetExp = true;
                     }
                 } while (loopcheck2);
+
             } while (checkGetExp);
         }
 
-        public void ExtractEducation()
+        public void ExtractYear1()
         {
-            headings.Clear();
             modules.Clear();
             projects.Clear();
 
-            string[] fields;
+            string[] field1;
+            string[] field2;
 
-            using (TextFieldParser parser = new TextFieldParser(csv_url))
+            using (TextFieldParser parser = new TextFieldParser(y1_module))
             {
                 parser.TextFieldType = FieldType.Delimited;
                 parser.SetDelimiters(",");
                 while (!parser.EndOfData)
                 {
                     //Process row
-                    fields = parser.ReadFields();
+                    field1 = parser.ReadFields();
 
-                    int strCount = fields.Length;
+                    int strCount = field1.Length;
 
-                    
-
-                    if (strCount == 2)
+                    for (int i = 0; i < strCount; i++)
                     {
-                        headings.Add(fields[0]);
-                        modules.Add(fields[1]);
-                    }
-                    else
-                    {
-                        for (int i = 0; i < strCount; i++)
-                        {
+                        modules.Add(field1[i]);                         
+                    }                   
+                }
+            }
 
-                            if (i <= ((strCount - 1) / 3))
-                            {
-                                headings.Add(fields[i]);
-                                headings.Remove("");
-                            }
-                            else if (i > ((strCount - 1) / 3) && i <= (((strCount - 1) * 2) / 3))
-                            {
-                                modules.Add(fields[i]);
-                                modules.Remove("");
-                            }
-                            else
-                            {
-                                projects.Add(fields[i]);
-                                projects.Remove("");
-                            }
-                        }
+            using (TextFieldParser parser = new TextFieldParser(y1_project))
+            {
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(",");
+                while (!parser.EndOfData)
+                {
+                    //Process row
+                    field2 = parser.ReadFields();
+
+                    int strCount = field2.Length;
+
+                    for (int i = 0; i < strCount; i++)
+                    {
+                        projects.Add(field2[i]);
                     }
                 }
             }
         }
 
-        public void SeparateInfo()
+        public void ExtractYear2()
         {
-            for (int i = 0; i < modules.Count; i++)
+            modules.Clear();
+            projects.Clear();
+
+            string[] field1;
+            string[] field2;
+
+            using (TextFieldParser parser = new TextFieldParser(y2_module))
             {
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(",");
+                while (!parser.EndOfData)
+                {
+                    //Process row
+                    field1 = parser.ReadFields();
+
+                    int strCount = field1.Length;
+
+                    for (int i = 0; i < strCount; i++)
+                    {
+                        modules.Add(field1[i]);
+                    }
+                }
+            }
+
+            using (TextFieldParser parser = new TextFieldParser(y2_project))
+            {
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(",");
+                while (!parser.EndOfData)
+                {
+                    //Process row
+                    field2 = parser.ReadFields();
+
+                    int strCount = field2.Length;
+
+                    for (int i = 0; i < strCount; i++)
+                    {
+                        projects.Add(field2[i]);
+                    }
+                }
+            }
+        }
+
+        public void ExtractYear3()
+        {
+            modules.Clear();
+            projects.Clear();
+
+            string[] field1;
+            string[] field2;
+
+            using (TextFieldParser parser = new TextFieldParser(y3_module))
+            {
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(",");
+                while (!parser.EndOfData)
+                {
+                    //Process row
+                    field1 = parser.ReadFields();
+
+                    int strCount = field1.Length;
+
+                    for (int i = 0; i < strCount; i++)
+                    {
+                        modules.Add(field1[i]);
+                    }
+                }
+            }
+
+            using (TextFieldParser parser = new TextFieldParser(y3_project))
+            {
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(",");
+                while (!parser.EndOfData)
+                {
+                    //Process row
+                    field2 = parser.ReadFields();
+
+                    int strCount = field2.Length;
+
+                    for (int i = 0; i < strCount; i++)
+                    {
+                        projects.Add(field2[i]);
+                    }
+                }
             }
         }
 
@@ -170,16 +299,9 @@ namespace Project_1
         {
             Console.Clear();
 
-            Console.WriteLine(Description);
+            Console.WriteLine("Choose a Education / Training:\n0 : Software Engineering ( Year 1 )\n1 : Software Engineering ( Year 2 )\n2 : Software Engineering ( Year 3 )\n3 : Go Back");
 
-            Console.WriteLine("Choose a company: \n");
-
-            foreach (var elem in headings)
-            {
-                Console.WriteLine($"{headings.IndexOf(elem)} : {elem}");
-            }
-
-            Console.WriteLine($"{headings.Count} : Go Back");
+            ExtractYear1();
 
             Console.WriteLine("\nWrong Input! Try again.");
         }

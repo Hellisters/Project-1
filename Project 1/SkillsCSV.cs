@@ -9,89 +9,32 @@ namespace Project_1
 {
     class SkillsCSV
     {
-        private readonly string Description = "Description:\n\n" + "I am Keshav Lolljee and currently studying Software Engineering at the University of " +
-                    "Technology, Mauritius. I am a final year student who is open to learning new technologies or developing new skills\n";
 
         private string csv_url = @"C:\Users\doxlo\Desktop\Ceridian\CSV_Files\Skills.csv";
-        private List<string> headings = new List<string>();
-        private List<string> info = new List<string>();
-        private int expChoice;
+        private List<string> skills = new List<string>();
 
 
-        public void GetEducation()
+        public void GetSkills()
         {
-            ExtractEducation();
+            ExtractSkills();
 
-            bool checkGetExp = true;
-            bool loopcheck2 = true;
+            Console.Clear();
 
-            do
+            Console.WriteLine("Skills: \n");
+
+            foreach (var elem in skills)
             {
-                Console.Clear();
+                Console.WriteLine($"{skills.IndexOf(elem) + 1} : {elem}");
+            }
 
-                Console.WriteLine(Description);
+            Console.WriteLine($"\nPress any key to go back...");
 
-                Console.WriteLine("Choose a Education / Training: \n");
-
-                foreach (var elem in headings)
-                {
-                    Console.WriteLine($"{headings.IndexOf(elem)} : {elem}");
-                }
-
-                Console.WriteLine($"{headings.Count} : Go Back");
-
-                do
-                {
-                    try
-                    {
-                        expChoice = int.Parse(Console.ReadLine());
-
-                        if (expChoice >= 0 && expChoice <= ((headings.Count) - 1))
-                        {
-                            Console.Clear();
-
-                            //Brief Description
-                            Console.WriteLine(Description);
-
-                            Console.WriteLine($"{headings[expChoice]}:\n\n{info[expChoice]}");
-
-                            Console.WriteLine($"\nPress any key to go back...");
-
-                            loopcheck2 = false;
-                            checkGetExp = true;
-
-                            Console.ReadKey();
-
-                            break;
-                        }
-                        else if (expChoice == headings.Count)
-                        {
-                            loopcheck2 = false;
-                            checkGetExp = false;
-
-                            break;
-                        }
-                        else
-                        {
-                            errorCases();
-                            loopcheck2 = true;
-                            checkGetExp = true;
-                        }
-                    }
-                    catch
-                    {
-                        errorCases();
-                        loopcheck2 = true;
-                        checkGetExp = true;
-                    }
-                } while (loopcheck2);
-            } while (checkGetExp);
+            Console.ReadKey();
         }
 
-        public void ExtractEducation()
+        public void ExtractSkills()
         {
-            headings.Clear();
-            info.Clear();
+            skills.Clear();
 
             string[] fields;
 
@@ -105,49 +48,16 @@ namespace Project_1
                     fields = parser.ReadFields();
 
                     int strCount = fields.Length;
-
-                    if (strCount == 2)
+                    for (int i = 0; i < strCount; i++)
                     {
-                        headings.Add(fields[0].Replace("[s]", "\n"));
-                        info.Add(fields[1].Replace("[s]", "\n"));
-                    }
-                    else
-                    {
-                        for (int i = 0; i < strCount - 1; i++)
+                        if(i == 0)
                         {
-
-                            if (i <= ((strCount - 1) / 2))
-                            {
-                                headings.Add(fields[i]);
-                            }
-                            else
-                            {
-                                info.Add(fields[i]);
-                            }
+                            skills.Add(fields[0]);
+                            skills.Remove("");
                         }
                     }
                 }
             }
-            headings.Remove("");
-            info.Remove("");
-        }
-
-        public void errorCases()
-        {
-            Console.Clear();
-
-            Console.WriteLine(Description);
-
-            Console.WriteLine("Choose a company: \n");
-
-            foreach (var elem in headings)
-            {
-                Console.WriteLine($"{headings.IndexOf(elem)} : {elem}");
-            }
-
-            Console.WriteLine($"{headings.Count} : Go Back");
-
-            Console.WriteLine("\nWrong Input! Try again.");
         }
     }
 }

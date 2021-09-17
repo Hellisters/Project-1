@@ -9,9 +9,6 @@ namespace Project_1
 {
     class ExperienceCSV
     {
-        private readonly string Description = "Description:\n\n" + "I am Keshav Lolljee and currently studying Software Engineering at the University of " +
-                    "Technology, Mauritius. I am a final year student who is open to learning new technologies or developing new skills\n";
-
         private string csv_url = @"C:\Users\doxlo\Desktop\Ceridian\CSV_Files\Experience.csv";
         private List<string> headings = new List<string>();
         private List<string> info = new List<string>();
@@ -28,8 +25,6 @@ namespace Project_1
             do
             {
                 Console.Clear();
-
-                Console.WriteLine(Description);
 
                 Console.WriteLine("Choose a company: \n");
 
@@ -49,9 +44,6 @@ namespace Project_1
                         if (expChoice >= 0 && expChoice <= ((headings.Count) - 1))
                         {
                             Console.Clear();
-
-                            //Brief Description
-                            Console.WriteLine(Description);
 
                             Console.WriteLine($"{headings[expChoice]}:\n{info[expChoice]}");
 
@@ -135,8 +127,6 @@ namespace Project_1
         public void errorCases()
         {
             Console.Clear();
-
-            Console.WriteLine(Description);
 
             Console.WriteLine("Choose an Experience / Job History: \n");
 
