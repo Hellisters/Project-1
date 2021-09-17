@@ -14,13 +14,17 @@ namespace Project_1
 
         private string csv_url = @"C:\Users\doxlo\Desktop\Ceridian\CSV_Files\Education.csv";
         private List<string> headings = new List<string>();
-        private List<string> info = new List<string>();
+        private List<string> modules = new List<string>();
+        private List<List<string>> sep_modules = new List<List<string>>();
+        private List<string> projects = new List<string>();
+        private List<string> sep_projects = new List<string>();
         private int expChoice;
 
 
         public void GetEducation()
         {
             ExtractEducation();
+            SeparateInfo();
 
             bool checkGetExp = true;
             bool loopcheck2 = true;
@@ -37,8 +41,23 @@ namespace Project_1
                 {
                     Console.WriteLine($"{headings.IndexOf(elem)} : {elem}");
                 }
-
-                Console.WriteLine($"{headings.Count} : Go Back");
+                Console.WriteLine($"\n\n");
+                foreach (var elem in modules)
+                {
+                    Console.WriteLine($"{modules.IndexOf(elem)} : {elem}");
+                }
+                Console.WriteLine($"\n\n");
+                foreach (var elem in projects)
+                {
+                    Console.WriteLine($"{projects.IndexOf(elem)} : {elem}");
+                }
+                Console.WriteLine($"\n\n");
+                Console.WriteLine($"\n\n");
+                foreach (var elem in sep_modules)
+                {
+                    Console.WriteLine($"{sep_modules.IndexOf(elem)} : {elem}");
+                }
+                /*Console.WriteLine($"{headings.Count} : Go Back");*/
 
                 do
                 {
@@ -53,7 +72,7 @@ namespace Project_1
                             //Brief Description
                             Console.WriteLine(Description);
 
-                            Console.WriteLine($"{headings[expChoice]}:\n\n{info[expChoice]}");
+                            Console.WriteLine($"{headings[expChoice]}:\n\n{modules[expChoice]}");
 
                             Console.WriteLine($"\nPress any key to go back...");
 
@@ -91,7 +110,8 @@ namespace Project_1
         public void ExtractEducation()
         {
             headings.Clear();
-            info.Clear();
+            modules.Clear();
+            projects.Clear();
 
             string[] fields;
 
@@ -106,30 +126,44 @@ namespace Project_1
 
                     int strCount = fields.Length;
 
+                    
+
                     if (strCount == 2)
                     {
-                        headings.Add(fields[0].Replace("[s]", "\n"));
-                        info.Add(fields[1].Replace("[s]", "\n"));
+                        headings.Add(fields[0]);
+                        modules.Add(fields[1]);
                     }
                     else
                     {
-                        for (int i = 0; i < strCount - 1; i++)
+                        for (int i = 0; i < strCount; i++)
                         {
 
-                            if (i <= ((strCount - 1) / 2))
+                            if (i <= ((strCount - 1) / 3))
                             {
                                 headings.Add(fields[i]);
+                                headings.Remove("");
+                            }
+                            else if (i > ((strCount - 1) / 3) && i <= (((strCount - 1) * 2) / 3))
+                            {
+                                modules.Add(fields[i]);
+                                modules.Remove("");
                             }
                             else
                             {
-                                info.Add(fields[i]);
+                                projects.Add(fields[i]);
+                                projects.Remove("");
                             }
                         }
                     }
                 }
             }
-            headings.Remove("");
-            info.Remove("");
+        }
+
+        public void SeparateInfo()
+        {
+            for (int i = 0; i < modules.Count; i++)
+            {
+            }
         }
 
         public void errorCases()

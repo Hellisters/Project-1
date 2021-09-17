@@ -9,10 +9,10 @@ namespace Project_1
 {
     class GuestMode
     {
-        private readonly string Description = "\nDescription:\n\n" + "I am Keshav Lolljee and currently studying Software Engineering at the University of " +
+        private static readonly string Description = "\nDescription:\n\n" + "I am Keshav Lolljee and currently studying Software Engineering at the University of " +
                     "Technology, Mauritius. I am a final year student who is open to learning new technologies or developing new skills";
 
-        public void Guest()
+        public static void Guest()
         {
             
             CSV m_select = new CSV();

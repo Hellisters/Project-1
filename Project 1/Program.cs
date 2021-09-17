@@ -9,13 +9,15 @@ namespace Project_1
 {
     class Program
     {
+        public delegate void GoToFunction();
+
         static bool modeCheck = true, inputCheck = true;
         static int UserInput;
 
         static void Main(string[] args)
         {
-            GuestMode g_mode = new GuestMode();
-            AdminMode a_mode = new AdminMode();
+
+            GoToFunction gtf;
 
             do
             {
@@ -55,13 +57,15 @@ namespace Project_1
                 {
                     case ModeSelection.GuestMode:
 
-                        g_mode.Guest();
+                        gtf = new GoToFunction(GuestMode.Guest);
+                        gtf();
 
                         break;
 
                     case ModeSelection.AdminMode:
 
-                        a_mode.Admin();
+                        gtf = new GoToFunction(AdminMode.Admin);
+                        gtf();
 
                         break;
 

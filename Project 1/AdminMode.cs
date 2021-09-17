@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.VisualBasic;
+using System;
 
 namespace Project_1
 {
     class AdminMode
     {
-        public void Admin()
+        public static void Admin()
         {
-            Console.WriteLine("You are now in Admin Mode");
+            string output = "", blabla = "wassup";
+            output = Interaction.InputBox("Enter here", "Your name");
+            Console.WriteLine(output);
+            Console.ReadKey();
         }
     }
 }
