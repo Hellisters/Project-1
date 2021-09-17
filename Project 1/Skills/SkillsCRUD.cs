@@ -16,25 +16,69 @@ namespace Project_1
         public void AddSkills()
         {
             ExtractSkills();
-
-            //before your loop
             var csv = new StringBuilder();
+            bool checkloop = true;
+            int userInput;
 
-            Console.WriteLine("Add a new skill:\n");
+            Console.Clear();
 
-            string input = Console.ReadLine();
-            skills.Add(input);
+            DisplaySkills();
 
-            for (int i = 0; i < skills.Count; i++)
+            Console.WriteLine($"\nChoose an action:\n0 : Add new skill\n1 : Cancel addition\n");
+
+            do
             {
-                //in your loop
-                var newdata = skills[i];
-                var newLine = string.Format("{0},{1}{2}", newdata, "", Environment.NewLine);
-                csv.Append(newLine);
-            }
+                try
+                {
+                    userInput = int.Parse(Console.ReadLine());
 
-            //after your loop
-            File.WriteAllText(csv_url, csv.ToString());
+                    if (userInput == 1)
+                    {
+                        checkloop = false;
+
+                        Console.Clear();
+
+                        Console.WriteLine("Addition cancelled!");
+                        Console.WriteLine($"\nPress any key to go back...");
+
+                        Console.ReadKey();
+                    }
+                    else if(userInput == 0)
+                    {
+                        Console.Clear();
+
+                        Console.WriteLine("Add a new skill:\n");
+
+                        string newskill = Console.ReadLine();
+
+                        skills.Add(newskill);
+
+                        for (int i = 0; i < skills.Count; i++)
+                        {
+                            //in your loop
+                            var newdata = skills[i];
+                            var newLine = string.Format("{0},{1}{2}", newdata, "", Environment.NewLine);
+                            csv.Append(newLine);
+                        }
+
+                        //after your loop
+                        File.WriteAllText(csv_url, csv.ToString());
+
+                        checkloop = false;
+                    }
+                    else
+                    {
+                        errorAdd();
+                        checkloop = true;
+                    }
+                }
+                catch
+                {
+                    errorAdd();
+                    checkloop = true;
+                }
+
+            } while (checkloop);
         }
 
         public void DeleteSkills()
@@ -45,53 +89,197 @@ namespace Project_1
             int userInput;
             var csv = new StringBuilder();
 
-            Console.WriteLine("Choose a skill to delete:\n");
+            Console.Clear();
 
             DisplaySkillsForCRUD();
+
+            Console.WriteLine($"\n{skills.Count} : Cancel delete");
+
+            Console.WriteLine("\nChoose a skill to delete:\n");
 
             do
             {
                 try
                 {
-                    userInput = int.Parse("\n"+Console.ReadLine());
+                    userInput = int.Parse(Console.ReadLine());
 
-                    if(userInput >= 0 && userInput <= (ReturnList().Count-1))
+                    if(userInput >= 0 && userInput <= skills.Count)
                     {
-                        ReturnList().RemoveAt(userInput);
-
-                        for (int i = 0; i < ReturnList().Count; i++)
+                        if(userInput == skills.Count)
                         {
-                            //in your loop
-                            var newdata = skills[i];
-                            var newLine = string.Format("{0},{1}{2}", newdata, "", Environment.NewLine);
-                            csv.Append(newLine);
-                        }
+                            checkloop = false;
 
-                        //after your loop
-                        File.WriteAllText(csv_url, csv.ToString());
-                        checkloop = false;
+                            Console.Clear();
+
+                            Console.WriteLine("Deletion cancelled!");
+                            Console.WriteLine($"\nPress any key to go back...");
+
+                            Console.ReadKey();
+                        }
+                        else
+                        {
+                            skills.RemoveAt(userInput);
+
+                            for (int i = 0; i < skills.Count; i++)
+                            {
+                                //in your loop
+                                var newdata = skills[i];
+                                var newLine = string.Format("{0},{1}{2}", newdata, "", Environment.NewLine);
+                                csv.Append(newLine);
+                            }
+
+                            //after your loop
+                            File.WriteAllText(csv_url, csv.ToString());
+                            checkloop = false;
+
+                            Console.Clear();
+
+                            Console.WriteLine("Skill deleted successfully!");
+                            Console.WriteLine($"\nPress any key to go back...");
+
+                            Console.ReadKey();
+                        }
+                        
                     }
                     else
                     {
-                        errorMsg();
+                        errorDelete();
                         checkloop = true;
                     }
                 }
                 catch
                 {
-                    errorMsg();
+                    errorDelete();
                     checkloop = true;
                 }
 
             } while (checkloop);
         }
 
-        public void errorMsg()
+
+        public void UpdateSkills()
+        {
+            ExtractSkills();
+
+            bool checkloop = true;
+            int userInput;
+            var csv = new StringBuilder();
+            string newSkill;
+
+            Console.Clear();
+
+            DisplaySkillsForCRUD();
+
+            Console.WriteLine($"\n{skills.Count} : Cancel update");
+
+            Console.WriteLine("\nChoose a skill to update:\n");
+
+            do
+            {
+                try
+                {
+
+                    userInput = int.Parse("\n" + Console.ReadLine());
+
+                    if (userInput >= 0 && userInput <= (skills.Count))
+                    {
+                        if (userInput == skills.Count)
+                        {
+                            checkloop = false;
+
+                            Console.Clear();
+
+                            Console.WriteLine("Update cancelled!");
+                            Console.WriteLine($"\nPress any key to go back...");
+
+                            Console.ReadKey();
+
+                        }
+                        else
+                        {
+                            Console.Clear();
+
+                            Console.WriteLine("Enter the new skill:\n");
+
+                            newSkill = Console.ReadLine();
+
+                            skills[userInput] = newSkill;
+
+                            for (int i = 0; i < skills.Count; i++)
+                            {
+                                //in your loop
+                                var newdata = skills[i];
+                                var newLine = string.Format("{0},{1}{2}", newdata, "", Environment.NewLine);
+                                csv.Append(newLine);
+                            }
+
+                            //after your loop
+                            File.WriteAllText(csv_url, csv.ToString());
+                            checkloop = false;
+
+                            Console.Clear();
+
+                            Console.WriteLine("Skill updated successfully!");
+                            Console.WriteLine($"\nPress any key to go back...");
+
+                            Console.ReadKey();
+                        }
+                        
+                    }
+                    else
+                    {
+                        errorUpdate();
+                        checkloop = true;
+                    }
+                }
+                catch
+                {
+                    errorUpdate();
+                    checkloop = true;
+                }
+
+            } while (checkloop);
+        }
+
+        public void errorUpdate()
         {
             Console.Clear();
-            Console.WriteLine("Choose a skill to delete:\n");
+
+            Console.WriteLine("Wrong Input! Try again.\n");
+
             DisplaySkillsForCRUD();
-            Console.WriteLine("\nWrong Input! Try again.\n");
+
+            Console.WriteLine($"\n{skills.Count} : Cancel update");
+
+            Console.WriteLine("\nChoose a skill to update:\n");
+
+            
+        }
+
+        public void errorAdd()
+        {
+            Console.Clear();
+
+            Console.WriteLine("Wrong Input! Try again.\n");
+
+            DisplaySkills();
+
+            Console.WriteLine($"\nChoose an action:\n0 : Add new skill\n1 : Cancel addition\n");
+
+            
+        }
+
+        public void errorDelete()
+        {
+            Console.Clear();
+
+            Console.WriteLine("Wrong Input! Try again.\n");
+
+            DisplaySkillsForCRUD();
+
+            Console.WriteLine($"\n{skills.Count} : Cancel delete");
+
+            Console.WriteLine("\nChoose a skill to delete:\n");
         }
 
         public void DisplaySkills()

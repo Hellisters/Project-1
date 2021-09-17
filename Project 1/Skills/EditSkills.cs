@@ -63,13 +63,6 @@ namespace Project_1
                         check2 = true;
                         userInput = -1;
 
-                        Console.Clear();
-
-                        Console.WriteLine("Skill added successfully!");
-                        Console.WriteLine($"\nPress any key to go back...");
-
-                        Console.ReadKey();
-
                         break;
 
 
@@ -79,21 +72,15 @@ namespace Project_1
                         check2 = true;
                         userInput = -1;
 
-                        Console.Clear();
-
-                        Console.WriteLine("Skill deleted successfully!");
-                        Console.WriteLine($"\nPress any key to go back...");
-
-                        Console.ReadKey();
 
                         break;
 
                     case CRUD.Update:
 
-                        EditSkills es = new EditSkills();
-                        es.CRUDSkills();
+                        UpdateSkills();
                         check2 = true;
                         userInput = -1;
+
                         break;
 
                     case CRUD.Exit:
