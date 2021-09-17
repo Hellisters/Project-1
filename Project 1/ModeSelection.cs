@@ -35,14 +35,22 @@ namespace Project_1
         Exit
 
     }
-    
-    enum EditSelection  
+
+    enum ModeOptions
     {
-        
+        Experience,
+        Education,
+        Skills,
+        TechnologicalSkills,
+        ContactDetails,
+        BackMainMenu
+    }
+
+    enum CRUD
+    {
         Add,
         Delete,
-        Edit,
+        Update,
         Exit
-
     }
 }

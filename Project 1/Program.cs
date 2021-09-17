@@ -39,7 +39,7 @@ namespace Project_1
                         {
                             Console.Clear();
                             Console.WriteLine("Choose an option:\n0 for Guest Mode \n1 for Admin Mode\n2 for Exit");
-                            Console.WriteLine("\nWrong Input! Try again.");
+                            Console.WriteLine("\nWrong Input! Try again.\n");
                             inputCheck = true;
                         }
                         
@@ -48,7 +48,7 @@ namespace Project_1
                     {
                         Console.Clear();
                         Console.WriteLine("Choose an option:\n0 for Guest Mode \n1 for Admin Mode\n2 for Exit");
-                        Console.WriteLine("\nWrong Input! Try again.");
+                        Console.WriteLine("\nWrong Input! Try again.\n");
                         inputCheck = true;
                     }
                 } while (inputCheck);

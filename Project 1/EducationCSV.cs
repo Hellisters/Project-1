@@ -32,7 +32,7 @@ namespace Project_1
             {
                 Console.Clear();
 
-                Console.WriteLine("Choose a Education / Training:\n0 : Software Engineering ( Year 1 )\n1 : Software Engineering ( Year 2 )\n2 : Software Engineering ( Year 3 )\n3 : Go Back");
+                Console.WriteLine("Choose a Education / Training:\n0 : Software Engineering ( Year 1 )\n1 : Software Engineering ( Year 2 )\n2 : Software Engineering ( Year 3 )\n3 : Go Back\n");
 
                 do
                 {
@@ -303,7 +303,7 @@ namespace Project_1
 
             ExtractYear1();
 
-            Console.WriteLine("\nWrong Input! Try again.");
+            Console.WriteLine("\nWrong Input! Try again.\n");
         }
     }
 }

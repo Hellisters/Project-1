@@ -25,19 +25,18 @@ namespace Project_1
                     {
                         userInput = int.Parse(Console.ReadLine());
 
-                        if (userInput >= 0 && userInput <= 5)
+                        var choice = (ModeOptions)userInput;
+
+                        if (choice == ModeOptions.Experience || choice == ModeOptions.Education ||
+                            choice == ModeOptions.ContactDetails || choice == ModeOptions.BackMainMenu ||
+                            choice == ModeOptions.TechnologicalSkills || choice == ModeOptions.Skills)
                         {
                             check2 = false;
                             Console.Clear();
                         }
                         else
                         {
-                            Console.Clear();
-
-                            Console.WriteLine("\nChoose an Option:\n0 : Experience / Job History\n1 : Education / Training\n2 : Skills\n3 : Technological Skills\n4" +
-                            " : Contact Details\n5 : Back to Main Menu\n");
-
-                            Console.WriteLine("\nWrong Input! Try again.");
+                            errorCase();
 
                             userInput = int.Parse(Console.ReadLine());
 
@@ -46,13 +45,7 @@ namespace Project_1
                     }
                     catch
                     {
-                        Console.Clear();
-
-                        Console.WriteLine("\nChoose an Option:\n0 : Experience / Job History\n1 : Education / Training\n2 : Skills\n3 : Technological Skills\n4" +
-                        " : Contact Details\n5 : Back to Main Menu\n");
-
-                        Console.WriteLine("\nWrong Input! Try again.");
-
+                        errorCase();
                         check2 = true;
                     }
                 } while (check2);
@@ -108,6 +101,18 @@ namespace Project_1
 
                 }
             } while (check1);
+        }
+
+        private static void errorCase()
+        {
+            Console.Clear();
+
+            Console.WriteLine("Welcome to Admin Mode.");
+
+            Console.WriteLine("\nChoose an Option:\n0 : Experience / Job History\n1 : Education / Training\n2 : Skills\n3 : Technological Skills\n4" +
+            " : Contact Details\n5 : Back to Main Menu\n");
+
+            Console.WriteLine("\nWrong Input! Try again.\n");
         }
     }
 }

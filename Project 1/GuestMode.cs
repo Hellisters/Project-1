@@ -34,7 +34,11 @@ namespace Project_1
                     {
                         userInput = int.Parse(Console.ReadLine());
 
-                        if (userInput >= 0 && userInput <= 5)
+                        var choice = (ModeOptions)userInput;
+
+                        if ( choice == ModeOptions.Experience || choice == ModeOptions.Education || 
+                            choice == ModeOptions.ContactDetails || choice == ModeOptions.BackMainMenu || 
+                            choice == ModeOptions.TechnologicalSkills || choice == ModeOptions.Skills)
                         {
                             check2 = false;
                             Console.Clear();
@@ -49,7 +53,7 @@ namespace Project_1
                             Console.WriteLine("\nChoose an Option:\n0 : Experience / Job History\n1 : Education / Training\n2 : Skills\n3 : Technological Skills\n4" +
                             " : Contact Details\n5 : Back to Main Menu\n");
 
-                            Console.WriteLine("\nWrong Input! Try again.");
+                            Console.WriteLine("\nWrong Input! Try again.\n");
 
                             userInput = int.Parse(Console.ReadLine());
 
@@ -66,7 +70,7 @@ namespace Project_1
                         Console.WriteLine("\nChoose an Option:\n0 : Experience / Job History\n1 : Education / Training\n2 : Skills\n3 : Technological Skills\n4" +
                         " : Contact Details\n5 : Back to Main Menu\n");
 
-                        Console.WriteLine("\nWrong Input! Try again.");
+                        Console.WriteLine("\nWrong Input! Try again.\n");
 
                         check2 = true;
                     }

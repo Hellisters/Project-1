@@ -33,7 +33,7 @@ namespace Project_1
                     Console.WriteLine($"{headings.IndexOf(elem)} : {elem}");
                 }
 
-                Console.WriteLine($"{headings.Count} : Go Back");
+                Console.WriteLine($"{headings.Count} : Go Back\n");
 
                 do
                 {
@@ -124,7 +124,7 @@ namespace Project_1
             }
         }
         
-        public void errorCases()
+        private  void errorCases()
         {
             Console.Clear();
 
@@ -137,7 +137,7 @@ namespace Project_1
 
             Console.WriteLine($"{headings.Count} : Go Back");
 
-            Console.WriteLine("\nWrong Input! Try again.");
+            Console.WriteLine("\nWrong Input! Try again.\n");
         }
     }
 }
